@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+const API = import.meta.env.VITE_API_URL;
 
 // ─────────────────────────────────────────────
 // MY PRODUCT CARD
@@ -30,7 +31,7 @@ function MyProductCard({ item, onDelete }) {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:4001/product/${item._id}`);
+      await axios.delete(`${API}/product/${item._id}`);
 
       if (onDelete) {
         onDelete(item._id);
@@ -50,7 +51,7 @@ function MyProductCard({ item, onDelete }) {
         {!imgError ? (
           <img
             className="w-full h-full object-cover"
-            src={`http://localhost:4001/uploads/${item.image}`}
+            src={item.image}
             alt={item.name}
             onError={() => setImgError(true)}
           />

@@ -7,6 +7,7 @@ import { useAuth } from "../context/AuthProvider";
 import { FiPackage } from "react-icons/fi";
 import toast from "react-hot-toast";
 import MyProductCard from "./MyProductCard";
+const API = import.meta.env.VITE_API_URL;
 
 function Products() {
   // Move JSON data to state so we can add/delete items visually
@@ -33,7 +34,7 @@ function Products() {
     const getMyProduct = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:4001/product/my-products/${authUser._id}`,
+          `${API}/product/my-products/${authUser._id}`,
         );
         console.log(res.data);
         setProduct(res.data);
@@ -61,7 +62,7 @@ function Products() {
         formData.append("image", data.image[0]); // must match upload.single("image")
       }
 
-      const res = await axios.post("http://localhost:4001/product", formData, {
+      const res = await axios.post(`${API}/product`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

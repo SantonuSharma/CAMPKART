@@ -39,7 +39,7 @@ export const createProduct = async (req, res) => {
             });
         }
 
-        const image = req.file.filename;
+        const image = req.file.path;
 
         const newProduct = new Product({
             name: name,
@@ -63,29 +63,29 @@ export const createProduct = async (req, res) => {
 }
 
 export const deleteProduct = async (req, res) => {
-  try {
+    try {
 
-    const { id } = req.params;
+        const { id } = req.params;
 
-    const deletedProduct = await Product.findByIdAndDelete(id);
+        const deletedProduct = await Product.findByIdAndDelete(id);
 
-    if (!deletedProduct) {
-      return res.status(404).json({
-        message: "Product not found",
-      });
+        if (!deletedProduct) {
+            return res.status(404).json({
+                message: "Product not found",
+            });
+        }
+
+        res.status(200).json({
+            message: "Product deleted successfully",
+        });
+
+    } catch (error) {
+
+        console.log("Error: ", error);
+
+        res.status(500).json({
+            message: error.message,
+        });
+
     }
-
-    res.status(200).json({
-      message: "Product deleted successfully",
-    });
-
-  } catch (error) {
-
-    console.log("Error: ", error);
-
-    res.status(500).json({
-      message: error.message,
-    });
-
-  }
 };

@@ -1,25 +1,13 @@
 import multer from "multer";
-import path from "path";
-import crypto from "crypto";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import cloudinary from "./cloudinary.config.js";
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "uploads/");
-    },
-
-    filename: function (req, file, cb) {
-        crypto.randomBytes(12, function (err, name) {
-            if (err) return cb(err);
-
-            const fn =
-                name.toString("hex") +
-                "-" +
-                Date.now() +
-                path.extname(file.originalname);
-
-            cb(null, fn);
-        });
-    },
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "campkart",
+    allowed_formats: ["jpg", "png", "jpeg", "webp"],
+  },
 });
 
 const upload = multer({ storage });

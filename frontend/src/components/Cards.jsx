@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+const API = import.meta.env.VITE_API_URL;
 
 // ─────────────────────────────────────────────
 // How long a product lives before MongoDB deletes it.
@@ -101,7 +102,7 @@ function Cards({ item }) {
         {!imgError ? (
           <img
             className="w-full h-full object-cover"
-            src={`http://localhost:4001/uploads/${item.image}`}
+            src={item.image}
             alt={item.name}
             onError={() => setImgError(true)} // called if image URL is broken
           />

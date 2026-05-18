@@ -3,6 +3,7 @@ import Cards from "./Cards";
 import { useEffect } from "react";
 import axios from "axios";
 import { FiSearch } from "react-icons/fi";
+const API = import.meta.env.VITE_API_URL;
 
 function Products() {
   const [product, setProduct] = useState([]);
@@ -13,7 +14,7 @@ function Products() {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await axios.get("http://localhost:4001/product");
+        const res = await axios.get(`${API}/product`);
         console.log(res.data);
         setProduct(res.data);
       } catch (error) {

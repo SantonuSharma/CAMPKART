@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
+const API = import.meta.env.VITE_API_URL;
 
 function Login() {
   const {
@@ -17,7 +18,7 @@ function Login() {
       password: data.password,
     };
     await axios
-      .post("http://localhost:4001/user/login", userInfo)
+      .post(`${API}/user/login`, userInfo)
       .then((res) => {
         console.log(res.data);
         if (res.data) {
