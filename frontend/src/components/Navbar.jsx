@@ -84,7 +84,7 @@ function Navbar() {
                 </ul>
               </div>
               <div className="flex items-center gap-2 text-2xl font-bold cursor-pointer">
-                <img className="w-12" src=".././public/CampkartLogo.png" alt=""/>
+                <img className="w-12" src="/CampkartLogo.png" alt=""/>
                 <h4>CAMP<span className="text-rose-700">KART</span></h4>
               </div>
             </div>
